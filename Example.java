@@ -2,6 +2,8 @@ import java.util.*;
 
 class Marks {
 
+    private static String[][] studentDetails = new String[100][2];
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         
@@ -65,7 +67,7 @@ class Marks {
         System.out.println("|\t\t\t\tAdd New Student \t\t\t\t|");
         System.out.println("---------------------------------------------------------------------------------");
 
-
+        
 		
 	}
 
