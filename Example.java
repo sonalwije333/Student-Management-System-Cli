@@ -1,7 +1,7 @@
 import java.util.*;
 
-class Marks {
-/*
+/*class Marks {
+
     private static String[][] studentDetails = new String[100][2];
 
     public static void main(String[] args) {
@@ -134,8 +134,17 @@ class Marks {
        
     }
 
-    */
+}*/
+
+
+
+
+
+
+
+
+
+
 
 
    
-}
