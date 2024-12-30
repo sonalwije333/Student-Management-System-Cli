@@ -1,6 +1,6 @@
 import java.util.*;
-
-/*class Marks {
+/* 
+class Marks {
 
     private static String[][] studentDetails = new String[100][2];
 
@@ -134,9 +134,9 @@ import java.util.*;
        
     }
 
-}*/
+}
 
-
+*/
 
 
 
