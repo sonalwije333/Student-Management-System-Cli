@@ -54,20 +54,31 @@ public static void addNewStudent() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\tAdd New Student \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
-
     while (true) {
-        System.out.print("Enter Student ID: ");
-        String id = input.nextLine();  
+        System.out.print("Enter Student ID: ");  // Prompt for ID on a new line
+        String id = input.next();
+        
+        // Check if the ID already exists
         if (students.containsKey(id)) {
-            System.out.println("Student ID already exists. Try again.");
-            continue;
-        }
-        System.out.print("Enter Student Name: ");
-        String name = input.nextLine();
+            System.out.println("Student ID already exists. Please try again.");
+            continue;  // Go back to asking for the ID
+        }else{
+        
+        // Ask for the name only if the ID is unique
+        System.out.print("Enter Student Name: ");  // Prompt for Name on a new line
+        String name = input.next();
+        
+        // Add the student to the map
         students.put(id, new Student(id, name));
         System.out.println("Student added successfully!");
-        break;
+        break;  // Exit the loop after adding the student
     }
+
+}
+    
+    
+    
+    
 
 
 
@@ -76,22 +87,33 @@ public static void addNewStudent() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\tAdd New Student With Marks \t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
-   // addNewStudent();
-   // addMarks();
-   while (true) {
+    addNewStudent();
     System.out.print("Enter Student ID: ");
-    String id = input.nextLine();  
-    if (students.containsKey(id)) {
-        System.out.println("Student ID already exists. Try again.");
-        continue;
-    }
-    System.out.print("Enter Student Name: ");
-    String name = input.nextLine();
-    students.put(id, new Student(id, name));
-    System.out.println("Student added successfully!");
-    break;
+    String id = input.nextLine();
+    if (!students.containsKey(id)) {
+        System.out.println("Student not found!");
+        return; }
+    Student student = students.get(id);
+
+    System.out.print("Enter Programming Fundamentals Marks (0-100): ");
+    student.programmingMarks = validateMarks();
+    System.out.print("Enter DBMS Marks (0-100): ");
+    student.dbmsMarks = validateMarks();
+    System.out.println("Marks added successfully! Do you want to add a new student(y/n)");
+    String choice = input.nextLine();
+        
+        if (choice.equals("y") || choice.equals("Y")) {
+            addMarks();  
+            return;
+        } else if (choice.equals("n") || choice.equals("N")) {
+            return;  
+        } else {
+            System.out.println("Invalid choice. Please enter 'y' or 'n'");
+        }
+
 }
-}
+
+
 public static void addMarks() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\tAdd Marks   \t\t\t\t\t|");
@@ -136,8 +158,69 @@ static  double validateMarks() {
     return marks;
 }
 
+public static void updateStudentDetails() {
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("|\t\t\t\tUpdate Student Details \t\t\t\t|");
+    System.out.println("---------------------------------------------------------------------------------");
+   
+}
 
+public static void updateMarks() {
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("|\t\t\t\tUpdate Marks  \t\t\t\t\t|");
+    System.out.println("---------------------------------------------------------------------------------");
+    
+}
 
+public static void deleteStudents() {
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("|\t\t\t\t Delete Students \t\t\t\t\t|");
+    System.out.println("---------------------------------------------------------------------------------");
+    
+}
+
+public static void printStudentDetails() {
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("|\t\t\t\t Print Student Details \t\t\t\t|");
+    System.out.println("---------------------------------------------------------------------------------");
+    
+}
+
+public static void printStudentsRanks() {
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("|\t\t\t\tPrint Students Ranks  \t\t\t\t|");
+    System.out.println("---------------------------------------------------------------------------------");
+  
+}
+
+public static void bestInProgrammingFundamentals() {
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("|\t\t\t  Best in Programming Fundamentals     \t\t\t|");
+    System.out.println("---------------------------------------------------------------------------------");
+   
+}
+
+public static void bestInDatabaseManagement() {
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("|\t\t       Best In Database Management System   \t\t\t|");
+    System.out.println("---------------------------------------------------------------------------------");
+   
+}
+
+public final static void clearConsole() {
+    try {
+    final String os = System.getProperty("os.name");
+    if (os.contains("Windows")) {
+    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    } else {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+    }
+    } catch (final Exception e) {
+    e.printStackTrace();
+    // Handle any exceptions.
+    }
+    }
 
 }                   
                     
