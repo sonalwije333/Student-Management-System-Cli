@@ -4,8 +4,8 @@ import java.util.*;
 class Student {
     String id;
     String name;
-    int programmingMarks = -1;
-    int dbmsMarks = -1;
+    double programmingMarks = -1;
+    double dbmsMarks = -1;
 
     Student(String id, String name) {
         this.id = id;
@@ -57,7 +57,7 @@ public static void addNewStudent() {
 
     while (true) {
         System.out.print("Enter Student ID: ");
-        String id = input.nextLine();  // Fixed here
+        String id = input.nextLine();  
         if (students.containsKey(id)) {
             System.out.println("Student ID already exists. Try again.");
             continue;
@@ -71,7 +71,57 @@ public static void addNewStudent() {
 
 
 
-} }                   
+} 
+ public  static void addNewStudentWithMarks() {
+    addNewStudent();
+    addMarks();
+}
+static void addMarks() {
+    System.out.print("Enter Student ID: ");
+    String id = input.nextLine();
+    if (!students.containsKey(id)) {
+        System.out.println("Student not found!");
+        return;
+    }
+    Student student = students.get(id);
+
+    System.out.print("Enter Programming Fundamentals Marks (0-100): ");
+    student.programmingMarks = validateMarks();
+    System.out.print("Enter DBMS Marks (0-100): ");
+    student.dbmsMarks = validateMarks();
+    System.out.println("Marks added successfully! Do you want to add a new student(y/n)");
+    String choice = input.nextLine();
+        
+        if (choice.equals("y") || choice.equals("Y")) {
+            addMarks();  
+            return;
+        } else if (choice.equals("n") || choice.equals("N")) {
+            return;  // Exit to the main menu
+        } else {
+            System.out.println("Invalid choice. Please enter 'y' or 'n'");
+        }
+
+}
+ 
+static  double validateMarks() {
+     double marks;
+     while (true) {
+        try {
+            marks = input.nextInt();
+            input.nextLine();
+            if (marks >= 0 && marks <= 100) break;
+        } catch (InputMismatchException e) {
+            input.nextLine();
+        }
+        System.out.print("Invalid marks. Enter again (0-100): ");
+    }
+    return marks;
+}
+
+
+
+
+}                   
                     
                    
                 
