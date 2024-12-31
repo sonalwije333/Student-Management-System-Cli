@@ -73,16 +73,34 @@ public static void addNewStudent() {
 
 } 
  public  static void addNewStudentWithMarks() {
-    addNewStudent();
-    addMarks();
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("|\t\t\t\tAdd New Student With Marks \t\t\t|");
+    System.out.println("---------------------------------------------------------------------------------");
+   // addNewStudent();
+   // addMarks();
+   while (true) {
+    System.out.print("Enter Student ID: ");
+    String id = input.nextLine();  
+    if (students.containsKey(id)) {
+        System.out.println("Student ID already exists. Try again.");
+        continue;
+    }
+    System.out.print("Enter Student Name: ");
+    String name = input.nextLine();
+    students.put(id, new Student(id, name));
+    System.out.println("Student added successfully!");
+    break;
 }
-static void addMarks() {
+}
+public static void addMarks() {
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("|\t\t\t\tAdd Marks   \t\t\t\t\t|");
+    System.out.println("---------------------------------------------------------------------------------");
     System.out.print("Enter Student ID: ");
     String id = input.nextLine();
     if (!students.containsKey(id)) {
         System.out.println("Student not found!");
-        return;
-    }
+        return; }
     Student student = students.get(id);
 
     System.out.print("Enter Programming Fundamentals Marks (0-100): ");
@@ -96,7 +114,7 @@ static void addMarks() {
             addMarks();  
             return;
         } else if (choice.equals("n") || choice.equals("N")) {
-            return;  // Exit to the main menu
+            return;  
         } else {
             System.out.println("Invalid choice. Please enter 'y' or 'n'");
         }
