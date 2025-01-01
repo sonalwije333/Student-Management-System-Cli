@@ -42,11 +42,7 @@ public class StudentManagement {
                 case 10:  bestInDatabaseManagement(); break;    
                 case 0: System.out.println("Exiting the system. Goodbye!");  input.close();    return;  
                 default:  System.out.println("Invalid option. Please try again.");
-               
-                    
-                    
-                
-              
+                  
             }}     }
 
 
@@ -70,18 +66,21 @@ public static void addNewStudent() {
         
         // Add the student to the map
         students.put(id, new Student(id, name));
-        System.out.println("Student added successfully!");
-        break;  // Exit the loop after adding the student
-    }
 
-}
-    
-    
-    
-    
-
-
-
+        while (true) {
+            System.out.print("Do you want to add a new student? (y/n): ");
+            String choice = input.next();
+            
+            if (choice.equals("y") || choice.equals("Y")) {
+                addNewStudent(); // Make sure this method exists
+                return;
+            } else if (choice.equals("n") || choice.equals("N")) {
+                return;
+            } else {
+                System.out.println("Invalid choice. Please enter 'y' or 'n'");
+            }
+        }
+    }}
 } 
  public  static void addNewStudentWithMarks() {
     System.out.println("---------------------------------------------------------------------------------");
