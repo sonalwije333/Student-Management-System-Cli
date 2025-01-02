@@ -51,20 +51,19 @@ public static void addNewStudent() {
     System.out.println("|\t\t\t\tAdd New Student \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
     while (true) {
-        System.out.print("Enter Student ID: ");  // Prompt for ID on a new line
+        System.out.print("Enter Student ID: "); 
         String id = input.next();
         
-        // Check if the ID already exists
+      
         if (students.containsKey(id)) {
             System.out.println("Student ID already exists. Please try again.");
-            continue;  // Go back to asking for the ID
+            continue; 
         }else{
         
-        // Ask for the name only if the ID is unique
-        System.out.print("Enter Student Name: ");  // Prompt for Name on a new line
+        
+        System.out.print("Enter Student Name: ");  
         String name = input.next();
         
-        // Add the student to the map
         students.put(id, new Student(id, name));
 
         while (true) {
@@ -90,12 +89,24 @@ public static void addNewStudent() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\tAdd New Student With Marks \t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
-    addNewStudent();
-    System.out.print("Enter Student ID: ");
-    String id = input.nextLine();
-    if (!students.containsKey(id)) {
-        System.out.println("Student not found!");
-        return; }
+   
+while (true) {
+    System.out.print("Enter Student ID: ");  
+    String id = input.next();
+    
+    // Check if the ID already exists
+    if (students.containsKey(id)) {
+        System.out.println("Student ID already exists. Please try again.");
+        continue;  // Go back to asking for the ID
+    }else{
+    
+    // Ask for the name only if the ID is unique
+    System.out.print("Enter Student Name: ");  
+    String name = input.next();
+    
+    // Add the student to the map
+    students.put(id, new Student(id, name));
+   
     Student student = students.get(id);
 
     System.out.print("Enter Programming Fundamentals Marks (0-100): ");
@@ -106,13 +117,17 @@ public static void addNewStudent() {
     String choice = input.nextLine();
         
         if (choice.equals("y") || choice.equals("Y")) {
-            addMarks();  
+            addNewStudentWithMarks();
             return;
         } else if (choice.equals("n") || choice.equals("N")) {
             return;  
         } else {
             System.out.println("Invalid choice. Please enter 'y' or 'n'");
         }
+
+
+
+} }
 
 }
 
@@ -146,6 +161,7 @@ public static void addMarks() {
 
 }
  
+//Validate marks
 static  double validateMarks() {
      double marks;
      while (true) {
@@ -166,6 +182,11 @@ public static void updateStudentDetails() {
     System.out.println("|\t\t\t\tUpdate Student Details \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
    
+
+
+
+
+    
 }
 
 public static void updateMarks() {
