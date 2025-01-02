@@ -72,15 +72,19 @@ public static void addNewStudent() {
             String choice = input.next();
             
             if (choice.equals("y") || choice.equals("Y")) {
-                addNewStudent(); // Make sure this method exists
+                addNewStudent(); 
                 return;
             } else if (choice.equals("n") || choice.equals("N")) {
                 return;
             } else {
                 System.out.println("Invalid choice. Please enter 'y' or 'n'");
+               clearConsole();
             }
+          
         }
+       
     }}
+    
 } 
  public  static void addNewStudentWithMarks() {
     System.out.println("---------------------------------------------------------------------------------");
