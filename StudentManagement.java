@@ -323,6 +323,11 @@ public static void printStudentDetails() {
     Student student = students.get(id);
     System.out.println(" Student Name: " + student.name);
 
+    if (student.programmingMarks == -1 && student.dbmsMarks == -1) {
+        System.out.println("Marks yet to be added");
+        System.out.println("Do you want to search another student details? (y/n)");
+    }
+
 
 
 
