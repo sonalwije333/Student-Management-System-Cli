@@ -399,10 +399,60 @@ public static void printStudentsRanks() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\tPrint Students Ranks  \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
-  
 
-    
+    // Create a list of students who have marks
+    List<Student> validStudents = new ArrayList<>();
+    for (Student student : students.values()) {
+        if (student.programmingMarks != -1 && student.dbmsMarks != -1) {
+            validStudents.add(student);
+        }
+    }
+
+    // Sort students by total marks in descending order
+    validStudents.sort((s1, s2) -> {
+        double total1 = s1.programmingMarks + s1.dbmsMarks;
+        double total2 = s2.programmingMarks + s2.dbmsMarks;
+        return Double.compare(total2, total1); // Sorting in descending order
+    });
+
+    // Print the table header
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.printf("| %-5s | %-12s | %-20s | %-12s | %-16s |%n", "Rank", "Student ID", "Name", "Total Marks", "Avg. Marks");
+    System.out.println("---------------------------------------------------------------------------------");
+
+    // Iterate through the students and print the details
+    int rank = 1;
+    for (Student student : validStudents) {
+        double totalMarks = student.programmingMarks + student.dbmsMarks;
+        double avgMarks = totalMarks / 2;
+
+        // Print each student's details in table format
+        System.out.printf("| %-5d | %-12s | %-20s | %-12.2f | %-16f |%n", rank, student.id, student.name, totalMarks, avgMarks);
+        rank++;
+    }
+
+    System.out.println("---------------------------------------------------------------------------------");
+
+    String choice;
+    while (true) {
+        System.out.print("Do you want to go back to the main menu? (y/n): ");
+
+      
+        input.nextLine(); 
+
+        choice = input.nextLine().trim().toLowerCase(); 
+
+        if (choice.equals("y")) {
+            return; 
+        } else if (choice.equals("n")) {
+            break;
+        } else {
+            System.out.println("Invalid choice. Please enter 'y' or 'n'.");
+        }
+    }
 }
+
+
 
 public static void bestInProgrammingFundamentals() {
     System.out.println("---------------------------------------------------------------------------------");
