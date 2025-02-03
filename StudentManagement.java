@@ -185,19 +185,29 @@ while (true) {
     System.out.print("Enter Student ID: ");  
     String id = input.next();
     
-    if (students.containsKey(id)){
-        System.out.println("Student ID already exists. Please try again. ");
+    if (!students.containsKey(id)){
+        System.out.println("Student ID not found. Please try again. ");
         continue;
     } 
     
     Student student = students.get(id);
     System.out.println(" Student Name: " + student.name);
-    System.out.print("Enter New Student Name: ");
+    System.out.print("Enter the New Student Name: ");
     String newName = input.next();
     student.name = newName;
     System.out.println("Student details updated successfully!");
+    while (true) {
+        System.out.print("Do you want to update another student's details? (y/n): ");
+        String choice = input.next();
+        if (choice.equalsIgnoreCase("y")) {
+            break; 
+        } else if (choice.equalsIgnoreCase("n")) {
+            return; 
+        } else {
+            System.out.println("Invalid choice. Please enter 'y' or 'n'");
+        }
 
-}
+}}
 
 
 
@@ -207,11 +217,46 @@ public static void updateMarks() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\tUpdate Marks  \t\t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
-    
 
+    String id;
+    while (true) {  // Loop to check valid ID
+        System.out.print("Enter Student ID: ");  
+        id = input.next();
+        
+        if (!students.containsKey(id)) {
+            System.out.println("Student ID not found. Please try again.");
+            continue;
+        }
+        break;  // Exit loop if valid ID is found
+    }
 
+    Student student = students.get(id);
+    System.out.println(" Student Name: " + student.name);
+    System.out.println(" Programming Fundamentals Marks: " + student.programmingMarks);
+    System.out.println(" DBMS Marks: " + student.dbmsMarks);
 
+    // Validate and update marks
+    System.out.print("Enter new Programming Fundamentals Marks (0-100): ");
+    student.programmingMarks = validateMarks();
+    System.out.print("Enter new DBMS Marks (0-100): ");
+    student.dbmsMarks = validateMarks();
+
+    System.out.println("Marks updated successfully!");
+
+    while (true) {
+        System.out.print("Do you want to update another student's details? (y/n): ");
+        String choice = input.next();
+        if (choice.equalsIgnoreCase("y")) {
+            updateMarks();  // Recursively call the function
+            return;
+        } else if (choice.equalsIgnoreCase("n")) {
+            return;
+        } else {
+            System.out.println("Invalid choice. Please enter 'y' or 'n'");
+        }
+    }
 }
+
 
 public static void deleteStudents() {
     System.out.println("---------------------------------------------------------------------------------");
