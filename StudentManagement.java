@@ -261,19 +261,71 @@ public static void updateMarks() {
 
 public static void deleteStudents() {
     System.out.println("---------------------------------------------------------------------------------");
-    System.out.println("|\t\t\t\t Delete Students \t\t\t\t\t|");
+    System.out.println("|\t\t\t\t Delete Students \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
  
-    
+    String id;
+    while (true) {
+        System.out.print("Enter Student ID: ");  
+        input.nextLine();  
+        id = input.nextLine();  
+        
+        if (!students.containsKey(id)) {
+            System.out.println("Student ID not found. Please try again.");
+            continue;
+        }
+        break;  
+    }   
+    Student student = students.get(id);
+    System.out.println(" Student Name: " + student.name);
+    System.out.print("Are you sure you want to delete this student? (y/n): ");
+    String confirmChoice = input.nextLine();
 
+    if (confirmChoice.equalsIgnoreCase("y")) {
+        // Delete the student from the map
+        students.remove(id);
+        System.out.println("Student " + student.name + " has been deleted successfully!");
+    } else {
+        System.out.println("Student deletion cancelled.");
+    }
 
+    System.out.print("Do you want to delete another student? (y/n): ");
+    String choice = input.nextLine();
+
+    if (choice.equalsIgnoreCase("n")) {
+        return; 
+    } else if (!choice.equalsIgnoreCase("y")) {
+        System.out.println("Invalid choice. Please enter 'y' or 'n'.");
+    }
 }
+
+
+
+
 
 public static void printStudentDetails() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\t Print Student Details \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
     
+    String id;
+    while (true) {  // Loop to check valid ID
+        System.out.print("Enter Student ID: ");  
+        input.nextLine();  
+        id = input.nextLine();  
+        
+        if (!students.containsKey(id)) {
+            System.out.println("Student ID not found. Please try again.");
+            continue;
+        }
+        break;  
+    }
+    Student student = students.get(id);
+    System.out.println(" Student Name: " + student.name);
+
+
+
+
 }
 
 public static void printStudentsRanks() {
