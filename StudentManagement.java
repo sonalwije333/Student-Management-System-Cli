@@ -181,6 +181,23 @@ public static void updateStudentDetails() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\tUpdate Student Details \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
+while (true) {
+    System.out.print("Enter Student ID: ");  
+    String id = input.next();
+    
+    if (students.containsKey(id)){
+        System.out.println("Student ID already exists. Please try again. ");
+        continue;
+    } 
+    
+    Student student = students.get(id);
+    System.out.println(" Student Name: " + student.name);
+    System.out.print("Enter New Student Name: ");
+    String newName = input.next();
+    student.name = newName;
+    System.out.println("Student details updated successfully!");
+
+}
 
 
 
