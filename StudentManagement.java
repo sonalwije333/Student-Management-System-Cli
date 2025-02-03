@@ -175,18 +175,15 @@ static  double validateMarks() {
         System.out.print("Invalid marks. Enter again (0-100): ");
     }
     return marks;
-}
+} 
 
 public static void updateStudentDetails() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\tUpdate Student Details \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
-   
 
 
 
-
-    
 }
 
 public static void updateMarks() {
@@ -194,13 +191,19 @@ public static void updateMarks() {
     System.out.println("|\t\t\t\tUpdate Marks  \t\t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
     
+
+
+
 }
 
 public static void deleteStudents() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\t Delete Students \t\t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
+ 
     
+
+
 }
 
 public static void printStudentDetails() {
@@ -247,7 +250,7 @@ public final static void clearConsole() {
     }
 
 }                   
-                    
+                 
                    
                 
 
