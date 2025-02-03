@@ -221,7 +221,8 @@ public static void updateMarks() {
     String id;
     while (true) {  // Loop to check valid ID
         System.out.print("Enter Student ID: ");  
-        id = input.next();
+        input.nextLine();  
+        id = input.nextLine();  
         
         if (!students.containsKey(id)) {
             System.out.println("Student ID not found. Please try again.");
