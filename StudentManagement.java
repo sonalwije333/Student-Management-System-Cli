@@ -307,37 +307,101 @@ public static void printStudentDetails() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\t Print Student Details \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
-    
+
     String id;
     while (true) {  // Loop to check valid ID
-        System.out.print("Enter Student ID: ");  
-        input.nextLine();  
-        id = input.nextLine();  
-        
+        System.out.print("Enter Student ID: ");
+        input.nextLine();
+        id = input.nextLine();
+
         if (!students.containsKey(id)) {
             System.out.println("Student ID not found. Please try again.");
             continue;
         }
-        break;  
+        break;
     }
+
     Student student = students.get(id);
     System.out.println(" Student Name: " + student.name);
 
     if (student.programmingMarks == -1 && student.dbmsMarks == -1) {
         System.out.println("Marks yet to be added");
         System.out.println("Do you want to search another student details? (y/n)");
+        String choice = input.nextLine();
+
+        if (choice.equalsIgnoreCase("n")) {
+            return; 
+        } else if (!choice.equalsIgnoreCase("y")) {
+            System.out.println("Invalid choice. Please enter 'y' or 'n'.");
+        }
+    } else {
+        // Calculate total and average marks
+        double totalMarks = student.programmingMarks + student.dbmsMarks;
+        double avgMarks = totalMarks / 2;
+
+        // Rank Calculation: Sort students by total marks
+        List<Student> allStudents = new ArrayList<>(students.values());
+        allStudents.sort((s1, s2) -> {
+            double total1 = s1.programmingMarks + s1.dbmsMarks;
+            double total2 = s2.programmingMarks + s2.dbmsMarks;
+            return Double.compare(total2, total1); // Sort in descending order
+        });
+
+        int rank = 1;
+        for (Student s : allStudents) {
+            double sTotal = s.programmingMarks + s.dbmsMarks;
+            if (sTotal == totalMarks) {
+                break;
+            }
+            rank++;
+        }
+
+ System.out.println("-----------------------------------------------------------------------------------------------------");
+System.out.printf("| %-30s | %-15s | %-12s | %-18s | %-10s |%n", "Subject", "Marks", "Total Marks", "Average Marks", "Rank");
+System.out.println("-----------------------------------------------------------------------------------------------------");
+System.out.printf("| %-30s | %-15.2f | %-12.2f | %-18.2f | %-10d |%n", "Programming Fundamentals", student.programmingMarks, totalMarks, avgMarks, rank);
+System.out.printf("| %-30s | %-15.2f | %-12.2f | %-18.2f | %-10d |%n", "DBMS", student.dbmsMarks, totalMarks, avgMarks, rank);
+System.out.println("-----------------------------------------------------------------------------------------------------");
+
+
+        // Rank positions in text
+        String rankPosition = "";
+        switch (rank) {
+            case 1:
+                rankPosition = "First Rank";
+                break;
+            case 2:
+                rankPosition = "Second Rank";
+                break;
+            case 3:
+                rankPosition = "Third Rank";
+                break;
+            default:
+                rankPosition = "Rank " + rank;
+        }
+        System.out.println("Rank Position: " + rankPosition);
+
+        // Ask if the user wants to continue
+        System.out.println("Do you want to search another student details? (y/n)");
+        String choice = input.nextLine();
+
+        if (choice.equalsIgnoreCase("n")) {
+            return;
+        } else if (!choice.equalsIgnoreCase("y")) {
+            System.out.println("Invalid choice. Please enter 'y' or 'n'.");
+        } 
     }
-
-
-
-
 }
+
+
 
 public static void printStudentsRanks() {
     System.out.println("---------------------------------------------------------------------------------");
     System.out.println("|\t\t\t\tPrint Students Ranks  \t\t\t\t|");
     System.out.println("---------------------------------------------------------------------------------");
   
+
+    
 }
 
 public static void bestInProgrammingFundamentals() {
