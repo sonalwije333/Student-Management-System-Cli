@@ -453,24 +453,103 @@ public static void printStudentsRanks() {
 }
 
 
-
 public static void bestInProgrammingFundamentals() {
-    System.out.println("---------------------------------------------------------------------------------");
-    System.out.println("|\t\t\t  Best in Programming Fundamentals     \t\t\t|");
-    System.out.println("---------------------------------------------------------------------------------");
-   
-
-
-
-
+    System.out.println("--------------------------------------------------------------------------------------");
+    System.out.println("|                         Best in Programming Fundamentals                           |");
+    System.out.println("--------------------------------------------------------------------------------------");
     
+    List<Student> validStudents = new ArrayList<>();
+    for (Student student : students.values()) {
+        if (student.programmingMarks != -1) { // Only consider students with PF marks
+            validStudents.add(student);
+        }
+    }
+
+    // Sort students by PF marks in descending order
+    validStudents.sort((s1, s2) -> Double.compare(s2.programmingMarks, s1.programmingMarks));
+
+    // Define equal column width
+    int columnWidth = 20; 
+
+    // Print the table header with equal spacing
+    System.out.println("--------------------------------------------------------------------------------------");
+    System.out.printf("| %-20s | %-20s | %-36.2s |\n", "Student ID", "Name", "PF Marks");
+    System.out.println("--------------------------------------------------------------------------------------");
+
+    // Print student data with equal spacing
+    for (Student student : validStudents) {
+        System.out.printf("| %-20s | %-20s | %-36.2f |\n", student.id, student.name, student.programmingMarks);
+    }
+
+    System.out.println("--------------------------------------------------------------------------------------");
+
+    // Ask the user if they want to return to the main menu
+    String choice;
+    while (true) {
+        System.out.print("Do you want to go back to the main menu? (y/n): ");
+
+        input.nextLine(); 
+
+        choice = input.nextLine().trim().toLowerCase(); 
+
+        if (choice.equals("y")) {
+            return; 
+        } else if (choice.equals("n")) {
+            break;
+        } else {
+            System.out.println("Invalid choice. Please enter 'y' or 'n'.");
+        }
+    }
 }
 
+
 public static void bestInDatabaseManagement() {
-    System.out.println("---------------------------------------------------------------------------------");
-    System.out.println("|\t\t       Best In Database Management System   \t\t\t|");
-    System.out.println("---------------------------------------------------------------------------------");
-   
+    System.out.println("--------------------------------------------------------------------------------------");
+    System.out.println("|                         Best In Database Management System                         |");
+    System.out.println("--------------------------------------------------------------------------------------");
+
+    List<Student> validStudents = new ArrayList<>();
+    for (Student student : students.values()) {
+        if (student.dbmsMarks != -1) { // Only consider students with DBMS marks
+            validStudents.add(student);
+        }
+    }
+
+    // Sort students by DBMS marks in descending order
+    validStudents.sort((s1, s2) -> Double.compare(s2.dbmsMarks, s1.dbmsMarks));
+
+    // Define equal column width
+    int columnWidth = 20;
+
+    // Print the table header with equal spacing
+    System.out.println("--------------------------------------------------------------------------------------");
+    System.out.printf("| %-20s | %-20s | %-36.2s |\n", "Student ID", "Name", "DBMS Marks");
+    System.out.println("--------------------------------------------------------------------------------------");
+
+    // Print student data with equal spacing
+    for (Student student : validStudents) {
+        System.out.printf("| %-20s | %-20s | %-36.2f |\n", student.id, student.name, student.dbmsMarks);
+    }
+
+    System.out.println("--------------------------------------------------------------------------------------");
+
+    // Ask the user if they want to return to the main menu
+    String choice;
+    while (true) {
+        System.out.print("Do you want to go back to the main menu? (y/n): ");
+
+        input.nextLine(); 
+
+        choice = input.nextLine().trim().toLowerCase(); 
+
+        if (choice.equals("y")) {
+            return; 
+        } else if (choice.equals("n")) {
+            break;
+        } else {
+            System.out.println("Invalid choice. Please enter 'y' or 'n'.");
+        }
+    }
 }
 
 public final static void clearConsole() {
